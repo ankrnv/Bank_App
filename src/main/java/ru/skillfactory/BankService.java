@@ -124,7 +124,7 @@ public class BankService {
 
         boolean srcDone = false;
         boolean destDone = false;
-        boolean checkAmm = false;
+        boolean checkAmm;
         BankAccount check = new BankAccount();
         BankAccount checkDest = new BankAccount();
 
