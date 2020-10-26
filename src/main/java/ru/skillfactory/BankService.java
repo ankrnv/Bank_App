@@ -112,6 +112,8 @@ public class BankService {
         BankAccount check = new BankAccount();
         BankAccount checkDest = new BankAccount();
 
+        // Поиск в Мар пользователя "источника" перевода (по реквизитам)
+
         for (Map.Entry<String, BankAccount> entry : accounts.entrySet()) {
             if (entry.getKey().equals(srcRequisite)) {
                 check = entry.getValue();
@@ -122,6 +124,8 @@ public class BankService {
             }
         }
 
+        // Поиск в Мар пользователя получателя перевода (по реквизитам)
+
         for (Map.Entry<String, BankAccount> entryDest : accounts.entrySet()) {
             if (entryDest.getKey().equals(destRequisite)) {
                 checkDest = entryDest.getValue();
@@ -131,6 +135,8 @@ public class BankService {
                 destDone = false;
             }
         }
+
+        // Проверка возможности и осуществление перевода
 
         if (amount <= check.getBalance()) {
             checkAmm = true;
