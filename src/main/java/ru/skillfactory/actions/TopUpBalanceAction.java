@@ -24,7 +24,7 @@ public class TopUpBalanceAction implements UserAction {
     @Override
     public boolean execute(BankService bankService, Input input, String requisite) {
 
-        Long amount = input.askLong("Введите сумму: "); //дописать проверку введенного пользователем типа
+        Long amount = input.askLong("Введите сумму: ");
         boolean done = bankService.topUpBalance(requisite, amount);
         if (done = true) {
             System.out.println("Операция выполнена успешно ");
