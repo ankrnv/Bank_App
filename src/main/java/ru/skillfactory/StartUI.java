@@ -11,9 +11,9 @@ public class StartUI {
 
     /**
      * Здесь происходит следующее:
-     * 1. Авторизовываете пользователя.
-     * 2. Печатаете меню.
-     * 3. В зависимости от введённого числа запускаете нужную функцию.
+     * 1. Авторизация пользователя
+     * 2. Вывод меню
+     * 3. Запуск нужной функции в зависимости от введённого числа
      *
      * @param bankService BankService объект.
      * @param actions     массив с действиями.
@@ -37,12 +37,12 @@ public class StartUI {
 
 
     /**
-     * Метод должен работать пока пользователь не авторизуется (пока отключил цикл!).
+     * Метод работает пока пользователь не авторизуется
      *
      * @param bankService BankService объект.
      * @param input       Input объект.
      * @return возвращает реквизиты аккаунта, под которым авторизовался пользователь.
-     * Получайте их вызывом метода getRequisiteIfPresent, класса BankService.
+     * Получение происходит вызывом метода getRequisiteIfPresent, класса BankService.
      */
     public static String authorization(BankService bankService, Input input) {
 
@@ -50,7 +50,7 @@ public class StartUI {
         boolean authComplete = false;
         while (!authComplete) { // цикл отключён!!!
             /*
-             * Запрашиваете у пользователя логин, пароль пока он не пройдёт авторизацию.
+             * Запрашиваем у пользователя логин, пароль пока он не пройдёт авторизацию.
              * Авторизация пройдена при условие что в BankService есть пользователь с
              * данным логином и паролем (работайте только с теми пользователями что есть).
              */
@@ -58,7 +58,7 @@ public class StartUI {
             String password = input.askStr("Ваш password: ");
             Optional<String> optional = bankService.getRequisiteIfPresent(login, password);
 
-            if (!optional.isEmpty()) {
+            if (optional.isPresent()) {
                 rsl = optional.get();
                 authComplete = true;
             } else {
@@ -72,7 +72,7 @@ public class StartUI {
     }
 
     /**
-     * Печатается меню пользователя (только печатается, общения с пользователем нету).
+     * Печатается меню пользователя
      *
      * @param actions массив с действиями.
      */
@@ -85,8 +85,7 @@ public class StartUI {
 
     public static void main(String[] args) {
         BankService bankService = new BankService();
-        // здесь создадите несколько аккаунтов на проверку
-        // данные осмысленно заполните, не просто пустые строки
+        // здесь создали несколько аккаунтов на проверку
 
         bankService.addAccount(new BankAccount("Евгений", "Qwerty", "1111", 150L));
         bankService.addAccount(new BankAccount("Андрей", "Aaaaaa", "1112", 1502L));
@@ -103,7 +102,7 @@ public class StartUI {
                 new TransferToAction(),
                 new Exit()
         };
-        // Наш Input можно менять на нужную реализацию (ValidateInput доделайте)
+        // Input поменяли на ValidateInput, в котором происходит проверка введенных данных
         Input input = new ValidateInput();
         // Запускаем наш UI передавая аргументами банковский сервис, экшены и Input.
         new StartUI().init(bankService, actions, input);
