@@ -8,8 +8,6 @@ import ru.skillfactory.*;
 public interface UserAction {
 
     /**
-     * Получить подзаголовок Action-а.
-     *
      * @return Строку текста, которая содержит заголовок для действия.
      */
     String getTitle();
