@@ -14,7 +14,7 @@ import static java.util.Optional.ofNullable;
 public class BankService {
     /**
      * В Map-е храним аккаунты, ключ это реквизиты
-     * (реквизиты у аккаунтов неизменяемые, это важно сохранить чтобы ключ в map всегда был такой же как у аккаунта)..
+     * (реквизиты у аккаунтов неизменяемые, это важно сохранить чтобы ключ в map всегда был такой же как у аккаунта)
      */
     private final Map<String, BankAccount> accounts = new HashMap<>();
 
@@ -26,9 +26,7 @@ public class BankService {
     }
 
     /**
-     * Метод проверяет что в Map-е есть аккаунт, если есть вернёт реквезиты. В моей реализации
-     * метод просто вернёт реквезиты без генерации исключений. Вы можете использовать подход с
-     * исключениями, тогда на каждую ситуацию должно быть отдельное исключение
+     * Метод проверяет что в Map-е есть аккаунт, если есть вернёт реквезиты
      *
      * @param username валидная строка.
      * @param password валидная строка.
@@ -38,7 +36,6 @@ public class BankService {
      */
     public Optional<String> getRequisiteIfPresent(String username, String password) {
 
-//        if (username != null && password != null) {
         Optional<String> optional = ofNullable(null);
 
         for (Map.Entry<String, BankAccount> entry : accounts.entrySet()) {
@@ -57,7 +54,7 @@ public class BankService {
 
     /**
      * @param requisite реквизиты, строка в произвольном формате.
-     * @return кол-во средств в копейках (для других валют аналогично было бы).
+     * @return кол-во средств
      */
     public long balance(String requisite) {
         long currentBalance = 0L;
@@ -74,7 +71,7 @@ public class BankService {
 
 
     /**
-     * Метод должен пополнять баланс.
+     * Метод пополняет баланс
      *
      * @param requisite реквизиты, строка в произвольном формате.
      * @param amount    сумма для пополнения.
@@ -103,7 +100,7 @@ public class BankService {
      *
      * @param srcRequisite  реквизиты, строка в произвольном формате.
      * @param destRequisite реквизиты, строка в произвольном формате.
-     * @param amount        кол-во средств в копейках (для других валют аналогично было бы).
+     * @param amount        кол-во средств
      * @return true если выполнены все условия, средства фактически переведены.
      */
     public boolean transferMoney(String srcRequisite, String destRequisite, long amount) {
