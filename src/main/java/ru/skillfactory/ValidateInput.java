@@ -11,6 +11,8 @@ public class ValidateInput extends ConsoleInput {
         return super.askStr(question);
     }
 
+    // Редактируем введенный пользователем логин, удаляем лишние пробелы, делаем с заглавной буквы
+
     public String askUsername(String question) {
         System.out.print(question);
         String username = scanner.nextLine();
@@ -27,6 +29,8 @@ public class ValidateInput extends ConsoleInput {
         }
         return username;
     }
+
+    // Редактируем введенные пользователем числовые значения, удаляем лишние пробелы
 
     @Override
     public int askInt(String question) {
@@ -46,6 +50,8 @@ public class ValidateInput extends ConsoleInput {
 
         return parse;
     }
+
+    // Редактируем введенные пользователем числовые значения, удаляем лишние пробелы
 
     @Override
     public long askLong(String question) {
